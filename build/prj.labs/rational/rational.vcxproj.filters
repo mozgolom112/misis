@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\home\Desktop\golovanov_n_s\prj.labs\rational\rational.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\home\Desktop\golovanov_n_s\prj.labs\rational\rational_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\home\Desktop\golovanov_n_s\prj.labs\rational\rational.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\home\Desktop\golovanov_n_s\prj.labs\rational\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{AF56AAA6-134C-388C-83BB-65E77980C19F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4601EDEB-9702-3CC1-837E-24213F3E26CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

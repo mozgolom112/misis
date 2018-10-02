@@ -1,0 +1,5 @@
+C:/Users/home/Desktop/golovanov_n_s/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/home/Desktop/golovanov_n_s/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/home/Desktop/golovanov_n_s/build/prj.labs/complex/CMakeFiles/complex.dir
+C:/Users/home/Desktop/golovanov_n_s/build/prj.labs/rational/CMakeFiles/rational.dir
+C:/Users/home/Desktop/golovanov_n_s/build/prj.labs/myrational/CMakeFiles/myrational.dir
