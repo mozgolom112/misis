@@ -61,4 +61,4 @@ sitemap.xml
 sitemap.xml.gz
 /nbproject/private/
 
-/build/
+build/
