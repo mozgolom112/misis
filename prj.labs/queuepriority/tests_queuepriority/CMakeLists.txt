@@ -1,0 +1,3 @@
+add_executable(tests_queuepriority queue_with_priority_test)
+target_link_libraries(tests_queuepriority queuepriority)
+set_property(TARGET tests_queuepriority PROPERTY CXX_STANDARD 14)

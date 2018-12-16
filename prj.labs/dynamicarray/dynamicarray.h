@@ -1,25 +1,30 @@
+#pragma once
 
 #ifndef DYNAMICARRAY 05102018
 #define DYNAMICARRAY 05102018
 
 class DynamicArray {
 public:
-	DynamicArray();
-	DynamicArray(const int size);
-	DynamicArray(const DynamicArray& copy);
-	~DynamicArray(); //РѕР±В¤Р·Р°С‚РµР»СЊРЅРѕ РѕР±СЉВ¤РІР»В¤Р№ РґР°Р»СЊС€Рµ, РёРЅР°С‡Рµ РІС‹Р»РµР·РµС‚ РѕС€РёР±РєР° Р»РёРЅРєРѕРІС‰РёРєР°!!!
+    DynamicArray();
+
+    DynamicArray(const int size);
+
+    DynamicArray(const DynamicArray &copy);
+
+    ~DynamicArray(); //об¤зательно объ¤вл¤й дальше, иначе вылезет ошибка линковщика!!!
 
 
-	DynamicArray& operator=(const DynamicArray& obj);
-	double& operator[](const int i);
+    DynamicArray &operator=(const DynamicArray &rhs);
 
-	int size() const;
+    double &operator[](const int i);
+
+    int size() const;
+
+    void resize(const int new_size);
+
 private:
-	int size_{};
-	double* data_{ nullptr }; //РЅРµ Р·Р°Р±С‹РІР°Р№ РїСЂРёСЃРІР°РёРІР°С‚СЊ РЅРµРІР°Р»РёРґРЅС‹Р№ Р°РґСЂРµСЃ
+    int size_{};
+    double *data_{nullptr}; //не забывай присваивать невалидный адрес
 };
 
-
-
-
-#endif //DYNAMICARRAY 05102018
+#endif

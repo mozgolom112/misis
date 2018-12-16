@@ -1,0 +1,3 @@
+add_executable(tests_dynamicarray dynamicarray_test.cpp)
+target_link_libraries(tests_dynamicarray dynamicarray)
+set_property(TARGET tests_dynamicarray PROPERTY CXX_STANDARD 14)

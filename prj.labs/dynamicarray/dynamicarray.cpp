@@ -1,63 +1,86 @@
 #include "dynamicarray.h"
 #include <iostream>
+#include <exception>
 
 
 DynamicArray::DynamicArray() {
-	size_ = 0;
-	data_ = new double[size_];
+    size_ = 0;
+    data_ = new double[size_]; //
 }
 
 DynamicArray::DynamicArray(const int size) {
-	if (size >= 0) {
-		data_ = new double[size];
-		size_ = size;
-	}
-	else {
-		std::cout << "Error" << std::endl;
-	} //СЌРєР·РµРјРїР»СЏСЂ СЃРѕР·РґР°РµС‚СЃСЏ РІ Р»СЋР±РѕРј СЃР»СѓС‡Р°Рµ. Р§С‚Рѕ С‚СѓС‚ РјРѕР¶РЅРѕ РїСЂРёРґСѓРјР°С‚СЊ?
+    if (size >= 0) {
+        data_ = new double[size]{0.0};
+        size_ = size;
+    } else {
+        throw std::out_of_range("Size can't be nagative");
+    }
 }
 
-DynamicArray::DynamicArray(const DynamicArray& copy) {
-	size_ = copy.size(); // РёР»Рё РјРѕР¶РµРј РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ = copy.size_; РєР°Рє Р»СѓС‡С€Рµ?
-	data_ = new double[size_];
-	// С‚Р°Рє РІРѕРѕР±С‰Рµ РЅРµ РЅР°РґРѕ РёР±Рѕ С‚С‹ РєРѕРїРёСЂСѓРµС€СЊ С‚СѓРїРѕ СЃСЃС‹Р»РєСѓ. data_ = copy.data_; //С‚Р°Рє РјРѕР¶РЅРѕ РєРѕРїРёСЂРѕРІР°С‚СЊ? РўС‹ РѕС‚РїСЂР°РІР»СЏРµС€СЊ СЃСЃС‹Р»РєСѓ РЅР° Р°РґСЂРµСЃ! РџСЂРё РІС‹Р·РѕРІРµ РґРµСЃС‚СЂСѓРєС‚РѕСЂР° b3 СѓР¶Рµ b2 СЂР°Р·СЂСѓС€РµРЅ Рё РІС‹РґР°РµС‚ РѕС€РёР±РєСѓ
+DynamicArray::DynamicArray(const DynamicArray &copy) {
+    size_ = copy.size(); // или можем использовать = copy.size_; как лучше?
+    data_ = new double[size_]{0.0};
+    // так вообще не надо ибо ты копируешь тупо ссылку. data_ = copy.data_; //так можно копировать? Ты отправляешь ссылку на адрес! При вызове деструктора b3 уже b2 разрушен и выдает ошибку
 
-	for (int i(0); i < size_; i++) {
-		data_[i] = copy.data_[i]; //copy[i] РїРѕС‡РµРјСѓ РЅРµ СЂР°Р±РѕС‚Р°РµС‚?  !!!!!!!!!!!!!!
-	}
+    for (int i(0); i < size_; i++) {
+        data_[i] = copy.data_[i]; //copy[i] почему не работает?  !!!!!!!!!!!!!! Потому что нет оператора [] для константы
+    }
 }
 
 int DynamicArray::size() const { //
-	return size_;
+    return size_;
 }
 
 DynamicArray::~DynamicArray() {
-	delete[] data_;
+    delete[] data_;
+    data_ = nullptr;
 }
 
 
-DynamicArray& DynamicArray::operator=(const DynamicArray& obj) {
-	if (obj.size() > size_) {
-		delete[] data_;
+DynamicArray &DynamicArray::operator=(const DynamicArray &rhs) {
 
-		data_ = new double[obj.size_];
-	}
-	size_ = obj.size_;
-	for (int i(0); i < obj.size_; i++) {
 
-		data_[i] = obj.data_[i];
-	}
+    if (this != &(rhs)) {
 
-	return *this;
+        if (rhs.size_ > size_) {
+            delete[] data_; //как сделать это грамотно? сначало очищаем, а потом создаем новый
+            data_ = new double[rhs.size_];
+
+        }
+        size_ = rhs.size_;
+        for (int i(0); i < rhs.size_; i++) {
+
+            data_[i] = rhs.data_[i];
+        }
+    }
+    return *this;
 }
 
-double& DynamicArray::operator[](const int i) {
+double &DynamicArray::operator[](const int index) {
 
-	if ((i >= 0) && (i < size_))
-		return data_[i];
-	else {
-		std::cout << "Error" << std::endl;
-		double a = 0.0; //РєРѕСЃС‚С‹Р»СЊ. РСЃРїСЂР°РІСЊ
-		return a;
-	}
+
+    if (index < 0) {
+        throw std::out_of_range("Index can't be negative");
+    }
+    if (index >= size_) {
+        throw std::out_of_range("Index can't be more than size of array");
+    }
+
+    return data_[index];
+}
+
+
+void DynamicArray::resize(const int new_size) {
+    if (size_ < new_size) {
+        double *newdata = new double[new_size]{0.0};
+        for (int i(0); i < size_; i++) {
+            newdata[i] = data_[i];
+        }
+
+        data_ = newdata;
+
+
+    }
+
+    this->size_ = new_size;
 }

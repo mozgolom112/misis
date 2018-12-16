@@ -1,0 +1,3 @@
+add_executable(tests_stack_l stack_on_list_test.cpp)
+target_link_libraries(tests_stack_l Template_stack_on_list)
+set_property(TARGET tests_stack_l PROPERTY CXX_STANDARD 14)

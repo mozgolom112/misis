@@ -1,0 +1,3 @@
+add_executable(tests_stack_a test_stack_on_array.cpp)
+target_link_libraries(tests_stack_a Template_stack_on_array)
+set_property(TARGET tests_stack_a PROPERTY CXX_STANDARD 14)
