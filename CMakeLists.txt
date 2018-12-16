@@ -7,3 +7,4 @@ project(golovanov_n_s)
 include(cmake/build_prefix.cmake)
 
 add_subdirectory(prj.labs)
+//kzkkz
